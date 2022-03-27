@@ -1,0 +1,10 @@
+agragar
+https://registrophp.herokuapp.com/registro.php?names=nelly&pwd=sarah&user=margarita
+
+
+todos datos
+https://registrophp.herokuapp.com/consultaalumno.php
+
+
+busqueda de un registro por nombre
+consultaalumno.php?usuername=avalbert
