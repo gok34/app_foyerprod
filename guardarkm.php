@@ -104,6 +104,10 @@ $query = "INSERT INTO control(kilometraje,id_usuario,imagen,contenido,tipo,fecha
       $sql1->execute();
 }
 else {
+	$queryconsultaanterio = "select  ";
+
+    
+	
   $query2 = "UPDATE vehiculos SET estado_vehiculo = 0 WHERE `id_vehiculo` =".$vehiculo;
 
       $sql2 = $dbConn->prepare($query2);
@@ -118,14 +122,21 @@ else {
   $kilomtrajeinical=$row11['kilometraje'];
 }
 
+
 $totalkm=$kilometraje- $kilomtrajeinical;
 
-$query = "INSERT INTO control(kilometraje,id_usuario,imagen,contenido,tipo,fecha,latitud,longitud,estado,totalkm,id_vehiculo)
+if($kilomtrajeinical<=$kilometraje){
+	$query = "INSERT INTO control(kilometraje,id_usuario,imagen,contenido,tipo,fecha,latitud,longitud,estado,totalkm,id_vehiculo)
                                                         VALUES('$kilometraje','$idusuario','$nama_file','$contenido','$tipe_file','$fechahoy','$latitud','$longitud','$estado','$totalkm','$vehiculo')";
 
       $sql = $dbConn->prepare($query);
       $sql->execute();
-
+}
+else{
+	header("HTTP/1.1 403 ERROR");
+   $data = ['code' => "403", 'mensaje' => "kilometraje mal ingresado"];
+   echo json_encode($data);
+}
 
 }  
 

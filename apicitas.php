@@ -15,21 +15,20 @@ $tamaño = count($output);*/
 //echo $status;
 //echo $tamaño;
 //if ($tamaño > 1) {
-	//echo "sss";
-	//$conexion = mysqli_connect("mysql:host={$db['host']};dbname={$db['db']}", $db['username'], $db['password']);
+//echo "sss";
+//$conexion = mysqli_connect("mysql:host={$db['host']};dbname={$db['db']}", $db['username'], $db['password']);
 
-	//valido la conexion
+//valido la conexion
 
 
-if ($_SERVER['REQUEST_METHOD'] == 'GET')
-{
+if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 
 	if (isset($_GET["codigo_vendedor"])) {
 
 		$codigo_vendedor = $_GET['codigo_vendedor'];
-        //$codigo_sector = $_GET['codigo_sector'];
-	
+		//$codigo_sector = $_GET['codigo_sector'];
+
 
 
 
@@ -37,18 +36,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET')
 		//$conexion = mysqli_connect($hostname, $username, $password, $database);
 
 
-	  $consulta = "select citas.id_citas,rutas.nombre_sucursal,citas.fecha_cita,citas.estado,citas.id_usuario from citas 
+		$consulta = "select citas.id_citas,rutas.nombre_sucursal,citas.fecha_cita,citas.estado,citas.id_usuario from citas 
 inner JOIN rutas on rutas.id_codigo=citas.ruta
 where id_usuario={$codigo_vendedor} and estado IN(3,1) and DATE(fecha_cita)= CURDATE() ORDER BY fecha_cita ASC
 ";
 
-  /*$consulta = "select citas.id_citas,rutas.nombre_sucursal,citas.fecha_cita,citas.estado,citas.id_usuario from citas 
+		/*$consulta = "select citas.id_citas,rutas.nombre_sucursal,citas.fecha_cita,citas.estado,citas.id_usuario from citas 
 inner JOIN rutas on rutas.id_codigo=citas.ruta
 where id_usuario={$codigo_vendedor} and estado IN(3,1) ORDER BY DATE(NOW()) DESC";*/
 
 
 
-// --nuevo
+		// --nuevo
 
 
 		//	$resultado=mysqli_query($conexion,$consulta);
@@ -59,24 +58,24 @@ where id_usuario={$codigo_vendedor} and estado IN(3,1) ORDER BY DATE(NOW()) DESC
 			$sql = $dbConn->prepare($consulta);
 			$sql->execute();
 			//$sql->setFetchMode(PDO::FETCH_ASSOC);
-			 if ($reg = $sql->fetchAll(PDO::FETCH_ASSOC)) {
-            $sql->closeCursor();
-            
-           $data = $reg;
-            
+			if ($reg = $sql->fetchAll(PDO::FETCH_ASSOC)) {
+				$sql->closeCursor();
+
+				$data = $reg;
+
 				echo  json_encode($data);
-              // echo '<br><br><br>';
+				// echo '<br><br><br>';
 
 
-                             
-		
-			
-			
-          // echo($reg1), '<br>';
-             
-                            
 
-			
+
+
+
+				// echo($reg1), '<br>';
+
+
+
+
 				//	file_put_contents('jui0001.json', json_encode($json));
 			} else {
 				header("HTTP/1.1 403 OK");
