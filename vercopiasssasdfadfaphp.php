@@ -2,7 +2,8 @@
     include "permisos.php";;
     include "config.php";
     include "utils.php";
-
+    date_default_timezone_set('America/Guatemala');
+    $fechahoy = date("Y-m-d H:i:s");
     $dbConn =  connect($dbdigital);
     $json = array();
 
@@ -20,14 +21,14 @@
 
     ?>
 
+
+
  <?php
-
-
-
-    $stat1 = $dbConn->prepare("select citas.fecha_creada,citas.fecha_cita,fecha_apertura,sector.nombre_sector,rutas.nombre_sucursal,usuarios.names,citas.tipo_actividad,citas.estado,citas.longitud,citas.latitud,citas.fecha_cierre,citas.longitudA,citas.latitudA from citas
-INNER JOIN usuarios ON citas.id_usuario = usuarios.cod_vendedor
-INNER JOIN sector ON sector.id_sector = citas.sector
-INNER JOIN rutas ON rutas.id_codigo = citas.ruta
+    $stat = $dbConn->prepare("SELECT `control`.`id`,`control`.`kilometraje`,`control`.`imagen`,`control`.`contenido`,`control`.`tipo`,`control`.`fecha`,`control`.`latitud`,`control`.`longitud`,usuarios.names FROM `control`
+INNER JOIN usuarios ON control.id_usuario = usuarios.cod_vendedor
+");
+    $stat->execute();
+    $stat1 = $dbConn->prepare("SELECT `control`.`id`,`control`.`kilometraje`,`control`.`imagen`,`control`.`contenido`,`control`.`estado`,`control`.`tipo`,`control`.`fecha`,`control`.`latitud`,`control`.`longitud`,usuarios.names FROM `control`INNER JOIN usuarios ON control.id_usuario = usuarios.cod_vendedor AND   MONTH(fecha)  = MONTH(CURRENT_DATE())
 
 ");
     $stat1->execute();
@@ -118,64 +119,7 @@ INNER JOIN rutas ON rutas.id_codigo = citas.ruta
                          <div class="col-sm-2">
                              <h1>Foyer</h1>
                          </div>
-                         <div class="col-sm-3">
-                             <ol class="breadcrumb float-sm-right">
-                                 <form role="form" class="form-horizontal" method="POST" action="filtrovisitas.php">
-                                     <div class="row">
-                                         <div class="col-sm-5">
 
-                                             <div class="form-group">
-                                                 <label for="exampleInputEmail1">Fecha Inicio</label>
-
-                                             </div>
-                                         </div>
-                                         <div class="col-sm-7">
-
-                                             <div class="form-group">
-
-                                                 <input type="date" name="fecha_inicio" class="form-control" id="exampleInputEmail1" placeholder="" required>
-                                             </div>
-                                         </div>
-                                     </div>
-
-                             </ol>
-                         </div>
-
-                         <div class="col-sm-3">
-                             <ol class="breadcrumb float-sm-right">
-                                 <div class="row">
-                                     <div class="col-sm-4">
-
-                                         <div class="form-group">
-                                             <label for="exampleInputEmail1">Fecha Final</label>
-
-                                         </div>
-                                     </div>
-                                     <div class="col-sm-8">
-
-                                         <div class="form-group">
-
-                                             <input type="date" name="fecha_final" class="form-control" id="exampleInputEmail1" placeholder="" required>
-                                         </div>
-                                     </div>
-                                 </div>
-                             </ol>
-                         </div>
-                         <div class="col-sm-3">
-                             <ol class="breadcrumb float-sm-left">
-                                 <div class="row">
-
-                                     <div class="col-sm-12">
-
-                                         <div class="form-group">
-
-                                             <button type="submit" class="btn btn-success">Reporte por Fecha</button>
-                                         </div>
-                                         </form>
-                                     </div>
-                                 </div>
-                             </ol>
-                         </div>
 
                      </div>
                  </div><!-- /.container-fluid -->
@@ -196,21 +140,15 @@ INNER JOIN rutas ON rutas.id_codigo = citas.ruta
                              <table id="example" class="table table-bordered table-hover dataTable dtr-inline" cellspacing="0" width="100%">
                                  <thead>
                                      <tr>
-                                         <th>fecha y Hora Creado</th>
-
-                                         <th>fecha Programada Visita</th>
-                                         <th>Nombre Sector</th>
-                                         <th>Nombre Cliente</th>
-                                         <th>Vendedor</th>
-                                         <th>estado</th>
-                                         <th>tipo Visita</th>
-                                         <th>fecha y Hora Apertura</th>
-
-                                         <th>fecha y Hora Cierre</th>
+                                         <th>#</th>
+                                         <th>Imagen</th>
+                                         <th>Kilometraje</th>
+                                         <th>Usuario</th>
+                                         <th>Fecha y Hora</th>
+                                         <th>Tipo Reporte</th>
 
 
-                                         <th>Ubicación Apertura</th>
-                                         <th>Ubicación Cierre</th>
+                                         <th>Ubicación</th>
                                      </tr>
                                  </thead>
 
@@ -220,50 +158,22 @@ INNER JOIN rutas ON rutas.id_codigo = citas.ruta
                                         ?>
                                          <tr>
 
-                                             <td><?php
-                                                    $oDate = new DateTime($row1['fecha_creada']);
-                                                    $sDate = $oDate->format("d-m-Y H:i:s");
-
-                                                    echo $sDate; ?></td>
-
-
-                                             <td><?php
-                                                    $oDate = new DateTime($row1['fecha_cita']);
-                                                    $sDate = $oDate->format("d-m-Y H:i:s");
-
-                                                    echo $sDate; ?></td>
-                                             <td><?php echo $row1['nombre_sector'] ?></td>
-                                             <td><?php echo $row1['nombre_sucursal'] ?></td>
+                                             <th scope="row"><?php echo $row1['id'] ?></th>
+                                             <td><?php echo "<a  href=javascript:finestraSecundaria('verfoto.php?id=" . $row1['id'] . "')> <embed   src='data:" . $row1['tipo'] . ";base64," . base64_encode($row1['contenido']) . "'width='100' height='100'/></a></li>" ?></td>
+                                             <td><?php echo $row1['kilometraje'] ?></td>
                                              <td><?php echo $row1['names'] ?></td>
+                                             <td><?php
+                                                    $oDate = new DateTime($row1['fecha']);
+                                                    $sDate = $oDate->format("d-m-Y H:i:s");
+
+                                                    echo $sDate; ?></td>
                                              <td><?php if ($row1['estado'] == 1) {  ?>
-                                                     Creada
-                                                 <?php  } else if ($row1['estado'] == 2) {  ?>
-                                                     Finalizada
-                                                 <?php } else if ($row1['estado'] == 3) {  ?>
-                                                     En Visita
+                                                     Inicio
+                                                 <?php  } else {  ?>
+                                                     Final
                                                  <?php  }   ?>
 
-
                                              </td>
-                                             <td><?php echo $row1['tipo_actividad'] ?></td>
-                                             <td><?php
-                                                    if ($row1['fecha_apertura'] == '') {
-                                                    } else {
-                                                        $oDate1 = new DateTime($row1['fecha_apertura']);
-                                                        $sDate1 = $oDate1->format("d-m-Y H:i:s");
-
-                                                        echo $sDate1;
-                                                    } ?></td>
-
-                                             <td><?php
-                                                    if ($row1['fecha_cierre'] == '') {
-                                                    } else {
-                                                        $oDate1 = new DateTime($row1['fecha_cierre']);
-                                                        $sDate1 = $oDate1->format("d-m-Y H:i:s");
-
-                                                        echo $sDate1;
-                                                    } ?></td>
-                                             <td><?php echo "<a href=javascript:finestraSecundaria('https://maps.google.com/?q=" . $row1['latitudA'] . "," . $row1['longitudA'] . "') >Ver Mapa</a>" ?></td>
                                              <td><?php echo "<a href=javascript:finestraSecundaria('https://maps.google.com/?q=" . $row1['latitud'] . "," . $row1['longitud'] . "') >Ver Mapa</a>" ?></td>
 
 

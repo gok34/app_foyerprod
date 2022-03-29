@@ -80,108 +80,9 @@
          <!-- /.navbar -->
 
          <!-- Main Sidebar Container -->
-         <aside class="main-sidebar sidebar-dark-primary elevation-4">
-             <!-- Brand Logo -->
-             <a href="index3.html" class="brand-link">
-                 <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-                 <span class="brand-text font-weight-light">FOYER ADMIN</span>
-             </a>
-
-             <!-- Sidebar -->
-             <div class="sidebar">
-                 <!-- Sidebar user panel (optional) -->
-                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                     <div class="image">
-                         <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-                     </div>
-                     <div class="info">
-                         <a href="#" class="d-block">ADMINISTRADOR</a>
-                     </div>
-                 </div>
-
-                 <!-- SidebarSearch Form -->
-
-
-                 <!-- Sidebar Menu -->
-                 <nav class="mt-2">
-                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                         <!-- Add icons to the links using the .nav-icon class
-                             with font-awesome or any other icon font library -->
-                         <li class="nav-item">
-                             <a href="reportegeneral.php" class="nav-link">
-                                 <i class="nav-icon fas fa-chart-pie"></i>
-                                 <p>Dashboard v1</p>
-                             </a>
-                         </li>
-                         <li class="nav-item">
-                             <a href="vercitasechas.php" class="nav-link active">
-                                 <i class="nav-icon fas fa-th"></i>
-                                 <p>
-                                     Reporte de Visitas
-                                     <span class="right badge badge-danger"></span>
-                                 </p>
-                             </a>
-                         </li>
-
-
-
-
-
-                         <li class="nav-item">
-                             <a href="vervisitas.php" class="nav-link">
-                                 <i class="nav-icon far fa-image"></i>
-                                 <p>
-                                    Reporte de Apertura y Cierre de Rutas
-                                 </p>
-                             </a>
-                         </li>
-                         <li class="nav-item">
-                             <a href="reportekilometraje.php" class="nav-link">
-                                 <i class="nav-icon fas fa-columns"></i>
-                                 <p>
-                                     Reporte General Kilometraje
-                                 </p>
-                             </a>
-                         </li>
-						    <li class="nav-item">
-                             <a href="agregarusuarios.php" class="nav-link">
-                                 <i class="nav-icon fas fa-columns"></i>
-                                 <p>
-                                     Agregar Vendedor
-                                 </p>
-                             </a>
-                         </li>
-						 <li class="nav-item">
-                             <a href="agregarrutasf.php" class="nav-link">
-                                 <i class="nav-icon fas fa-columns"></i>
-                                 <p>
-                                     Agregar Sector
-                                 </p>
-                             </a>
-                         </li>
- <li class="nav-item">
-                             <a href="agregarsectoresf.php" class="nav-link">
-                                 <i class="nav-icon fas fa-columns"></i>
-                                 <p>
-                                     Agregar Clientes
-                                 </p>
-                             </a>
-                         </li>
- <li class="nav-item">
-                             <a href="verclientesactu.php" class="nav-link">
-                                 <i class="nav-icon fas fa-columns"></i>
-                                 <p>
-                                    Clientes Actualizados
-                                 </p>
-                             </a>
-                         </li>
-
-                     </ul>
-                 </nav>
-                 <!-- /.sidebar-menu -->
-             </div>
-             <!-- /.sidebar -->
-         </aside>
+         <?php
+            include 'menu.php';
+            ?>
 
          <!-- Content Wrapper. Contains page content -->
          <div class="content-wrapper">
@@ -192,7 +93,7 @@
                          <div class="col-sm-6">
                              <h1>Foyer</h1>
                          </div>
-                         
+
                      </div>
                  </div><!-- /.container-fluid -->
              </section>
@@ -205,61 +106,61 @@
                      <!-- =========================================================== -->
 
 
-                     
+
 
                      <div class="row">
-                         
-                        <div class="col-md-6">
-            <!-- general form elements -->
-            <div class="card card-primary">
-              <div class="card-header">
-                <h3 class="card-title">Agregar Cliente</h3>
-              </div>
-              <!-- /.card-header -->
-              <!-- form start -->
-              <form role="form" class="form-horizontal" method="POST" action="guardarutasf.php" enctype="multipart/form-data">
-                <div class="card-body">
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Nombre cliente</label>
-                    <input type="text" name="nombre" class="form-control" id="exampleInputEmail1" placeholder="Ingrese nombre" required >
-                  </div>
-                   <div class="form-group">
-                <label for="exampleInputPassword1">Sector de Punto</label>
-               
-                    <select class="custom-select form-control-border" id="sector_id" name="sector">
 
-                    </select>
-                
-                <div class="resultado"></div>
-            </div>
-			<div class="form-group">
-                    <label for="exampleInputPassword1">Codigo de Cliente</label>
-                    <input type="number" name="codigocliente" class="form-control" id="exampleInputPassword1" placeholder="" required>
-                  </div>
-				   <div class="form-group">
-                    <label for="exampleInputPassword1">Codigo de Usuario</label>
-                    <input type="number" name="codigousuario" class="form-control" id="exampleInputPassword1" placeholder="" required>
-                  </div>
-				  
-				
-                  
-                 
-                </div>
-                <!-- /.card-body -->
+                         <div class="col-md-6">
+                             <!-- general form elements -->
+                             <div class="card card-primary">
+                                 <div class="card-header">
+                                     <h3 class="card-title">Agregar Cliente</h3>
+                                 </div>
+                                 <!-- /.card-header -->
+                                 <!-- form start -->
+                                 <form role="form" class="form-horizontal" method="POST" action="guardarutasf.php" enctype="multipart/form-data">
+                                     <div class="card-body">
+                                         <div class="form-group">
+                                             <label for="exampleInputEmail1">Nombre cliente</label>
+                                             <input type="text" name="nombre" class="form-control" id="exampleInputEmail1" placeholder="Ingrese nombre" required>
+                                         </div>
+                                         <div class="form-group">
+                                             <label for="exampleInputPassword1">Sector de Punto</label>
 
-                <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
-              </form>
-            </div>
-                     </div>
-                     <!-- /.row -->
+                                             <select class="custom-select form-control-border" id="sector_id" name="sector">
+
+                                             </select>
+
+                                             <div class="resultado"></div>
+                                         </div>
+                                         <div class="form-group">
+                                             <label for="exampleInputPassword1">Codigo de Cliente</label>
+                                             <input type="number" name="codigocliente" class="form-control" id="exampleInputPassword1" placeholder="" required>
+                                         </div>
+                                         <div class="form-group">
+                                             <label for="exampleInputPassword1">Codigo de Usuario</label>
+                                             <input type="number" name="codigousuario" class="form-control" id="exampleInputPassword1" placeholder="" required>
+                                         </div>
 
 
 
 
+                                     </div>
+                                     <!-- /.card-body -->
 
-                 </div><!-- /.container-fluid -->
+                                     <div class="card-footer">
+                                         <button type="submit" class="btn btn-primary">Submit</button>
+                                     </div>
+                                 </form>
+                             </div>
+                         </div>
+                         <!-- /.row -->
+
+
+
+
+
+                     </div><!-- /.container-fluid -->
              </section>
              <!-- /.content -->
 
@@ -290,77 +191,76 @@
      <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
      <!-- AdminLTE App -->
      <script src="dist/js/adminlte.min.js"></script>
-	 
-	  <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
+     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
      <!-- AdminLTE for demo purposes -->
- <script>
-//let estado = document.getElementById('id_estado');
+     <script>
+         //let estado = document.getElementById('id_estado');
 
-$(document).on('ready',function(){
-//let inputvalor = document.getElementById("id_estado").value;
-    var objXMLHttpRequestt = new XMLHttpRequest();
-objXMLHttpRequestt.onreadystatechange = function() {
-  if(objXMLHttpRequestt.readyState === 4) {
-    if(objXMLHttpRequestt.status === 200) {
-         // valor=objXMLHttpRequest.responseText;
-     var myArr = JSON.parse(this.responseText);
-        myFunction(myArr);
+         $(document).on('ready', function() {
+             //let inputvalor = document.getElementById("id_estado").value;
+             var objXMLHttpRequestt = new XMLHttpRequest();
+             objXMLHttpRequestt.onreadystatechange = function() {
+                 if (objXMLHttpRequestt.readyState === 4) {
+                     if (objXMLHttpRequestt.status === 200) {
+                         // valor=objXMLHttpRequest.responseText;
+                         var myArr = JSON.parse(this.responseText);
+                         myFunction(myArr);
 
-    } else {
-          alert('Error Code: ' +  objXMLHttpRequestt.status);
-          alert('Error Message: ' + objXMLHttpRequestt.statusText);
-    }
-  }
-}
-objXMLHttpRequestt.open('GET', 'http://143.198.163.181/apisectores.php');
-objXMLHttpRequestt.send();
-});
-function myFunction(arr) {
-    var out1 = "";
-    var i;
-    for(i = 0; i < arr.length; i++) {
-        out1 += '<option value="' + arr[i].id_sucursal + '">' +
-        arr[i].nombre_sector + '</option>';
-    }
-    document.getElementById("sector_id").innerHTML = out1;
-}
+                     } else {
+                         alert('Error Code: ' + objXMLHttpRequestt.status);
+                         alert('Error Message: ' + objXMLHttpRequestt.statusText);
+                     }
+                 }
+             }
+             objXMLHttpRequestt.open('GET', 'http://143.198.163.181/apisectores.php');
+             objXMLHttpRequestt.send();
+         });
 
-</script>
-<script>
-    
-//let estado = document.getElementById('id_estado');
+         function myFunction(arr) {
+             var out1 = "";
+             var i;
+             for (i = 0; i < arr.length; i++) {
+                 out1 += '<option value="' + arr[i].id_sucursal + '">' +
+                     arr[i].nombre_sector + '</option>';
+             }
+             document.getElementById("sector_id").innerHTML = out1;
+         }
+     </script>
+     <script>
+         //let estado = document.getElementById('id_estado');
 
 
-document.getElementById("id_estado").onchange = function(e) {
-let inputvalor = document.getElementById("id_estado").value;
-    var objXMLHttpRequest = new XMLHttpRequest();
-objXMLHttpRequest.onreadystatechange = function() {
-  if(objXMLHttpRequest.readyState === 4) {
-    if(objXMLHttpRequest.status === 200) {
-         // valor=objXMLHttpRequest.responseText;
-     var myArr2 = JSON.parse(this.responseText);
-        myFunction2(myArr2);
+         document.getElementById("id_estado").onchange = function(e) {
+             let inputvalor = document.getElementById("id_estado").value;
+             var objXMLHttpRequest = new XMLHttpRequest();
+             objXMLHttpRequest.onreadystatechange = function() {
+                 if (objXMLHttpRequest.readyState === 4) {
+                     if (objXMLHttpRequest.status === 200) {
+                         // valor=objXMLHttpRequest.responseText;
+                         var myArr2 = JSON.parse(this.responseText);
+                         myFunction2(myArr2);
 
-    } else {
-          alert('Error Code: ' +  objXMLHttpRequest.status);
-          alert('Error Message: ' + objXMLHttpRequest.statusText);
-    }
-  }
-}
-objXMLHttpRequest.open('GET', 'http://143.198.163.181/apirutas.php?codigo_vendedor=7&codigo_sector='+inputvalor);
-objXMLHttpRequest.send();
-}
-function myFunction2(arr2) {
-    var out = "";
-    var ii;
-    for(ii = 0; ii < arr2.length; ii++) {
-        out += '<input type="checkbox" value="' + arr2[ii].id_codigo + '" name="rutas[]">' +
-        arr2[ii].nombre_sucursal +'<br>';
-    }
-    document.getElementById("ruta").innerHTML = out;
-}
+                     } else {
+                         alert('Error Code: ' + objXMLHttpRequest.status);
+                         alert('Error Message: ' + objXMLHttpRequest.statusText);
+                     }
+                 }
+             }
+             objXMLHttpRequest.open('GET', 'http://143.198.163.181/apirutas.php?codigo_vendedor=7&codigo_sector=' + inputvalor);
+             objXMLHttpRequest.send();
+         }
 
-</script>
+         function myFunction2(arr2) {
+             var out = "";
+             var ii;
+             for (ii = 0; ii < arr2.length; ii++) {
+                 out += '<input type="checkbox" value="' + arr2[ii].id_codigo + '" name="rutas[]">' +
+                     arr2[ii].nombre_sucursal + '<br>';
+             }
+             document.getElementById("ruta").innerHTML = out;
+         }
+     </script>
  </body>
 
  </html>

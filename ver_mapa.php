@@ -3,7 +3,11 @@ include "config.php";
 include "utils.php";
 $dbConn =  connect($dbdigital);
 
+if (isset($_GET["codigo_vendedor"])) {
 
+    $codigo_vendedor = $_GET['codigo_vendedor'];
+    $nombre_vendedo = $_GET['nombre_vendedor'];
+}
 ?>
 
 <!DOCTYPE html>
@@ -13,7 +17,9 @@ $dbConn =  connect($dbdigital);
 
 <body>
 
-    <h1>My First Google Map</h1>
+    <h1>Reporte de Geoposicion por Vendedor: <?php echo $nombre_vendedo; ?></h1>
+    <input type="hidden" name="codigo_vendedor" id="codigo_vendedor" value="<?php echo $codigo_vendedor; ?>">
+
 
     <div id="map" style="width:100%;height:750px;"></div>
 
@@ -32,7 +38,7 @@ $dbConn =  connect($dbdigital);
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 
 <script type="text/javascript">
-    //let inputvalor = document.getElementById("id_estado").value;
+    let inputvalor = document.getElementById("codigo_vendedor").value;
 
 
 
@@ -46,8 +52,8 @@ $dbConn =  connect($dbdigital);
                         var myArr = JSON.parse(this.responseText);
                         // myMap(myArr);
 
-                        const image = "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
-
+                        const image = "./imagenes/icono.png";
+                        const image2 = "./imagenes/icono2.png";
 
                         var map = new google.maps.Map(document.getElementById('map'), {
                             zoom: 10,
@@ -82,7 +88,8 @@ $dbConn =  connect($dbdigital);
                             console.log(myArr[ii].latitud);
                             marker = new google.maps.Marker({
                                 position: new google.maps.LatLng(myArr[ii].latitudA, myArr[ii].longitudA),
-                                map: map
+                                map: map,
+                                icon: image2
                             });
 
                             google.maps.event.addListener(marker, 'click', (function(marker2, ii) {
@@ -99,7 +106,7 @@ $dbConn =  connect($dbdigital);
                     }
                 }
             }
-            objXMLHttpRequestt.open('GET', 'http://143.198.163.181/appgeousuario.php?codigo_vendedor=90');
+            objXMLHttpRequestt.open('GET', 'http://143.198.163.181/appgeousuario.php?codigo_vendedor=' + inputvalor);
             objXMLHttpRequestt.send();
         });
 

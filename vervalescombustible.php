@@ -104,126 +104,9 @@ where   MONTH(fecha_guarda)  = MONTH(CURRENT_DATE()) GROUP BY usuarios.names  ")
          <!-- /.navbar -->
 
          <!-- Main Sidebar Container -->
-         <aside class="main-sidebar sidebar-dark-primary elevation-4">
-             <!-- Brand Logo -->
-             <a href="index3.html" class="brand-link">
-                 <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-                 <span class="brand-text font-weight-light">FOYER ADMIN</span>
-             </a>
-
-             <!-- Sidebar -->
-             <div class="sidebar">
-                 <!-- Sidebar user panel (optional) -->
-                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                     <div class="image">
-                         <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-                     </div>
-                     <div class="info">
-                         <a href="#" class="d-block">ADMINISTRADOR</a>
-                     </div>
-                 </div>
-
-                 <!-- SidebarSearch Form -->
-
-
-                 <!-- Sidebar Menu -->
-                 <nav class="mt-2">
-                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                         <!-- Add icons to the links using the .nav-icon class
-                             with font-awesome or any other icon font library -->
-                         <li class="nav-item">
-                             <a href="reportegeneral.php" class="nav-link">
-                                 <i class="nav-icon fas fa-chart-pie"></i>
-                                 <p>Dashboard v1</p>
-                             </a>
-                         </li>
-                         <li class="nav-item">
-                             <a href="vercitasechas.php" class="nav-link active">
-                                 <i class="nav-icon fas fa-th"></i>
-                                 <p>
-                                     Reporte de Visitas
-                                     <span class="right badge badge-danger"></span>
-                                 </p>
-                             </a>
-                         </li>
-
-
-
-
-
-                         <li class="nav-item">
-                             <a href="vervisitas.php" class="nav-link">
-                                 <i class="nav-icon far fa-image"></i>
-                                 <p>
-                                     reporte de Km
-                                 </p>
-                             </a>
-                         </li>
-                         <li class="nav-item">
-                             <a href="reportekilometraje.php" class="nav-link">
-                                 <i class="nav-icon fas fa-columns"></i>
-                                 <p>
-                                     Reporte General Kilometraje
-                                 </p>
-                             </a>
-                         </li>
-                         <li class="nav-item">
-                             <a href="agregarusuarios.php" class="nav-link">
-                                 <i class="nav-icon fas fa-columns"></i>
-                                 <p>
-                                     Agregar Usuarios
-                                 </p>
-                             </a>
-                         </li>
-                         <li class="nav-item">
-                             <a href="agregarrutasf.php" class="nav-link">
-                                 <i class="nav-icon fas fa-columns"></i>
-                                 <p>
-                                     Agregar Sector
-                                 </p>
-                             </a>
-                         </li>
-                         <li class="nav-item">
-                             <a href="agregarsectoresf.php" class="nav-link">
-                                 <i class="nav-icon fas fa-columns"></i>
-                                 <p>
-                                     Agregar Rutas
-                                 </p>
-                             </a>
-                         </li>
-  <li class="nav-item">
-                             <a href="verclientesactu.php" class="nav-link">
-                                 <i class="nav-icon fas fa-columns"></i>
-                                 <p>
-                                    Clientes Actualizados
-                                 </p>
-                             </a>
-                         </li>
-
-<li class="nav-item">
-                             <a href="verclientesnuevos.php" class="nav-link">
-                                 <i class="nav-icon fas fa-columns"></i>
-                                 <p>
-                                    Clientes Nuevos
-                                 </p>
-                             </a>
-                         </li>
-						 <li class="nav-item">
-                             <a href="vervalescombustible.php" class="nav-link">
-                                 <i class="nav-icon fas fa-columns"></i>
-                                 <p>
-                                    Ver Vales Combustible
-                                 </p>
-                             </a>
-                         </li>
-
-
-                     </ul>
-                 </nav>
-                 <!-- /.sidebar-menu -->
-             </div>
-             <!-- /.sidebar -->
-         </aside>
+         <?php
+            include 'menu.php';
+            ?>
 
          <!-- Content Wrapper. Contains page content -->
          <div class="content-wrapper">
@@ -314,7 +197,7 @@ where   MONTH(fecha_guarda)  = MONTH(CURRENT_DATE()) GROUP BY usuarios.names  ")
                                      <tr>
 
                                          <th>Nombre de Vendedor</th>
-                                       
+
 
 
                                      </tr>
@@ -331,46 +214,47 @@ where   MONTH(fecha_guarda)  = MONTH(CURRENT_DATE()) GROUP BY usuarios.names  ")
 
 
                                              <td><?php echo $row1['names'] ?>
-											 <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">imagen Vale</th>
-	   <th scope="col">imagen Comprobante</th>
-      <th scope="col">fecha</th>
-      <th scope="col">ubicación</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-	<?php
+                                                 <table class="table">
+                                                     <thead>
+                                                         <tr>
+                                                             <th scope="col">#</th>
+                                                             <th scope="col">imagen Vale</th>
+                                                             <th scope="col">imagen Comprobante</th>
+                                                             <th scope="col">fecha</th>
+                                                             <th scope="col">ubicación</th>
+                                                         </tr>
+                                                     </thead>
+                                                     <tbody>
+                                                         <tr>
+                                                             <?php
 
-    $stat2 = $dbConn->prepare("
+                                                                $stat2 = $dbConn->prepare("
 	
 	select id_vale,imagen_vale,imagen_comprobante,fecha_guarda,latitud,longitud from vales
 INNER JOIN usuarios on usuarios.user= vales.id_usuario
 where id_usuario={$row1['id_usuario']} and  MONTH(fecha_guarda)  = MONTH(CURRENT_DATE())  ");
-    $stat2->execute();
-    /* while($row = $stat->fetch()){
+                                                                $stat2->execute();
+                                                                /* while($row = $stat->fetch()){
         echo "<li><a href='vervisitas.php?id=".$row['id']."' target='_blank'>".$row['imagen']."</a><br>
         <embed src='data:".$row['tipo'].";base64,".base64_encode($row['contenido'])."'width='200'/></li>";
     }*/
-    ?>
-	<?php
-                                        while ($row2 = $stat2->fetch()) {
-                                        ?>
-	 <tr>
-      <th scope="row"><?php echo $row2['id_vale'] ?></th>
-       <td><?php echo "<a  href=javascript:finestraSecundaria('verfotovale.php?id=" . $row2['id_vale'] . "')> <embed   src='data:image/jpeg;base64," . base64_encode($row2['imagen_vale']) . "'width='100' height='100'/></a></li>" ?></td>
-	    <td><?php echo "<a  href=javascript:finestraSecundaria('verfotovale.php?id2=" . $row2['id_vale'] . "')> <embed   src='data:image/jpeg;base64," . base64_encode($row2['imagen_comprobante']) . "'width='100' height='100'/></a></li>" ?></td>
-      <td><?php echo $row2['fecha_guarda'] ?></td>
-      <td><?php echo "<a href=javascript:finestraSecundaria('https://maps.google.com/?q=" . $row2['longitud'] . "," . $row2['latitud'] . "') >Ver Mapa</a>" ?></td>
-    </tr>
-    <?php  }
-                                        ?>
-  </tbody>
-</table></td>
-                                             
+                                                                ?>
+                                                             <?php
+                                                                while ($row2 = $stat2->fetch()) {
+                                                                ?>
+                                                         <tr>
+                                                             <th scope="row"><?php echo $row2['id_vale'] ?></th>
+                                                             <td><?php echo "<a  href=javascript:finestraSecundaria('verfotovale.php?id=" . $row2['id_vale'] . "')> <embed   src='data:image/jpeg;base64," . base64_encode($row2['imagen_vale']) . "'width='100' height='100'/></a></li>" ?></td>
+                                                             <td><?php echo "<a  href=javascript:finestraSecundaria('verfotovale.php?id2=" . $row2['id_vale'] . "')> <embed   src='data:image/jpeg;base64," . base64_encode($row2['imagen_comprobante']) . "'width='100' height='100'/></a></li>" ?></td>
+                                                             <td><?php echo $row2['fecha_guarda'] ?></td>
+                                                             <td><?php echo "<a href=javascript:finestraSecundaria('https://maps.google.com/?q=" . $row2['longitud'] . "," . $row2['latitud'] . "') >Ver Mapa</a>" ?></td>
+                                                         </tr>
+                                                     <?php  }
+                                                        ?>
+                                                     </tbody>
+                                                 </table>
+                                             </td>
+
 
 
 

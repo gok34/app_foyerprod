@@ -80,110 +80,9 @@
          <!-- /.navbar -->
 
          <!-- Main Sidebar Container -->
-         <aside class="main-sidebar sidebar-dark-primary elevation-4">
-             <!-- Brand Logo -->
-             <a href="index3.html" class="brand-link">
-                 <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-                 <span class="brand-text font-weight-light">FOYER ADMIN</span>
-             </a>
-
-             <!-- Sidebar -->
-             <div class="sidebar">
-                 <!-- Sidebar user panel (optional) -->
-                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                     <div class="image">
-                         <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-                     </div>
-                     <div class="info">
-                         <a href="#" class="d-block">ADMINISTRADOR</a>
-                     </div>
-                 </div>
-
-                 <!-- SidebarSearch Form -->
-
-
-                 <!-- Sidebar Menu -->
-                 <nav class="mt-2">
-                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                         <!-- Add icons to the links using the .nav-icon class
-                             with font-awesome or any other icon font library -->
-                         <li class="nav-item">
-                             <a href="reportegeneral.php" class="nav-link">
-                                 <i class="nav-icon fas fa-chart-pie"></i>
-                                 <p>Dashboard v1</p>
-                             </a>
-                         </li>
-                         <li class="nav-item">
-                             <a href="vercitasechas.php" class="nav-link active">
-                                 <i class="nav-icon fas fa-th"></i>
-                                 <p>
-                                     Reporte de Visitas
-                                     <span class="right badge badge-danger"></span>
-                                 </p>
-                             </a>
-                         </li>
-
-
-
-
-
-                         <li class="nav-item">
-                             <a href="vervisitas.php" class="nav-link">
-                                 <i class="nav-icon far fa-image"></i>
-                                 <p>
-                                     reporte de Km
-                                 </p>
-                             </a>
-                         </li>
-                         <li class="nav-item">
-                             <a href="reportekilometraje.php" class="nav-link">
-                                 <i class="nav-icon fas fa-columns"></i>
-                                 <p>
-                                     Reporte General Kilometraje
-                                 </p>
-                             </a>
-                         </li>
-						    <li class="nav-item">
-                             <a href="agregarusuarios.php" class="nav-link">
-                                 <i class="nav-icon fas fa-columns"></i>
-                                 <p>
-                                     Agregar Usuarios
-                                 </p>
-                             </a>
-                         </li>
- <li class="nav-item">
-                             <a href="agregarrutasf.php" class="nav-link">
-                                 <i class="nav-icon fas fa-columns"></i>
-                                 <p>
-                                     Agregar Sector
-                                 </p>
-                             </a>
-                         </li>
- <li class="nav-item">
-                             <a href="agregarsectoresf.php" class="nav-link">
-                                 <i class="nav-icon fas fa-columns"></i>
-                                 <p>
-                                     Agregar Rutas
-                                 </p>
-                             </a>
-                         </li>
- <li class="nav-item">
-                             <a href="verclientesactu.php" class="nav-link">
-                                 <i class="nav-icon fas fa-columns"></i>
-                                 <p>
-                                    Clientes Actualizados
-                                 </p>
-                             </a>
-                         </li>
-
-
-                     </ul>
-                 </nav>
-                 <!-- /.sidebar-menu -->
-             </div>
-             <!-- /.sidebar -->
-         </aside>
-
+         <?php
+            include 'menu.php';
+            ?>
          <!-- Content Wrapper. Contains page content -->
          <div class="content-wrapper">
              <!-- Content Header (Page header) -->
@@ -193,7 +92,7 @@
                          <div class="col-sm-6">
                              <h1>Foyer</h1>
                          </div>
-                         
+
                      </div>
                  </div><!-- /.container-fluid -->
              </section>
@@ -206,66 +105,66 @@
                      <!-- =========================================================== -->
 
 
-                     
+
 
                      <div class="row">
-                         
-                        <div class="col-md-6">
-            <!-- general form elements -->
-            <div class="card card-primary">
-              <div class="card-header">
-                <h3 class="card-title">Agregar Vendedores</h3>
-              </div>
-              <!-- /.card-header -->
-              <!-- form start -->
-              <form role="form" class="form-horizontal" method="POST" action="guardarusurios.php" enctype="multipart/form-data">
-                <div class="card-body">
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Nombre Ventas</label>
-                    <input type="text" name="nombre" class="form-control" id="exampleInputEmail1" placeholder="Ingrese nombre" required >
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
-                    <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="" required>
-                  </div>
-				   <div class="form-group">
-                    <label for="exampleInputPassword1">Codigo de Usuario</label>
-                    <input type="number" name="codigousuario" class="form-control" id="exampleInputPassword1" placeholder="" required>
-                  </div>
-				   <div class="form-group">
-                  <label for="exampleSelectBorder">Tipos de Usuario </label>
-                  <select name="tipousuario" class="custom-select form-control-border" id="exampleSelectBorder" required>
-                    <option value="1">Vendedor</option>
-                    <option value="2">Repartidor</option>
-                    
-                  </select>
-                </div>
-				 <div class="form-group">
-                  <label for="exampleSelectBorder">Sexo </label>
-                  <select name="sexo" class="custom-select form-control-border" id="exampleSelectBorder" required>
-                    <option value="M">Hombre</option>
-                    <option value="F">Mujer</option>
-                    
-                  </select>
-                </div>
-                  
-                 
-                </div>
-                <!-- /.card-body -->
 
-                <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
-              </form>
-            </div>
-                     </div>
-                     <!-- /.row -->
+                         <div class="col-md-6">
+                             <!-- general form elements -->
+                             <div class="card card-primary">
+                                 <div class="card-header">
+                                     <h3 class="card-title">Agregar Vendedores</h3>
+                                 </div>
+                                 <!-- /.card-header -->
+                                 <!-- form start -->
+                                 <form role="form" class="form-horizontal" method="POST" action="guardarusurios.php" enctype="multipart/form-data">
+                                     <div class="card-body">
+                                         <div class="form-group">
+                                             <label for="exampleInputEmail1">Nombre Ventas</label>
+                                             <input type="text" name="nombre" class="form-control" id="exampleInputEmail1" placeholder="Ingrese nombre" required>
+                                         </div>
+                                         <div class="form-group">
+                                             <label for="exampleInputPassword1">Password</label>
+                                             <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="" required>
+                                         </div>
+                                         <div class="form-group">
+                                             <label for="exampleInputPassword1">Codigo de Usuario</label>
+                                             <input type="number" name="codigousuario" class="form-control" id="exampleInputPassword1" placeholder="" required>
+                                         </div>
+                                         <div class="form-group">
+                                             <label for="exampleSelectBorder">Tipos de Usuario </label>
+                                             <select name="tipousuario" class="custom-select form-control-border" id="exampleSelectBorder" required>
+                                                 <option value="1">Vendedor</option>
+                                                 <option value="2">Repartidor</option>
+
+                                             </select>
+                                         </div>
+                                         <div class="form-group">
+                                             <label for="exampleSelectBorder">Sexo </label>
+                                             <select name="sexo" class="custom-select form-control-border" id="exampleSelectBorder" required>
+                                                 <option value="M">Hombre</option>
+                                                 <option value="F">Mujer</option>
+
+                                             </select>
+                                         </div>
 
 
+                                     </div>
+                                     <!-- /.card-body -->
+
+                                     <div class="card-footer">
+                                         <button type="submit" class="btn btn-primary">Submit</button>
+                                     </div>
+                                 </form>
+                             </div>
+                         </div>
+                         <!-- /.row -->
 
 
 
-                 </div><!-- /.container-fluid -->
+
+
+                     </div><!-- /.container-fluid -->
              </section>
              <!-- /.content -->
 
@@ -297,7 +196,7 @@
      <!-- AdminLTE App -->
      <script src="dist/js/adminlte.min.js"></script>
      <!-- AdminLTE for demo purposes -->
- 
+
  </body>
 
  </html>

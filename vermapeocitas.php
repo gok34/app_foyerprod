@@ -25,32 +25,12 @@
 
  <?php
 
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-        if (isset($_POST['fecha_inicio']) && isset($_POST['fecha_final'])) {
-            // captura de datos desde un formulario
-            //$title1              = ($_POST['nombre']);
-            $fecha_inicial              = ($_POST['fecha_inicio']);
-            $fecha_final             = ($_POST['fecha_final']);
-
-            $stat1 = $dbConn->prepare("
+    $stat1 = $dbConn->prepare("
 	
-	select usuarios.names,SUM(totalkm) as total from control 
+	select usuarios.names,SUM(totalkm) as total ,fecha,id_usuario from control 
 INNER JOIN usuarios on usuarios.user= control.id_usuario
-where estado=2 and fecha BETWEEN '{$fecha_inicial} 00:00:00' AND '{$fecha_final} 23:59:00'  GROUP BY usuarios.names ");
-            $stat1->execute();
-        } else {
-            //header("HTTP/1.1 403 OK");
-            // $data = ['code' => "403", 'mensaje' => "datos vacios "];
-            header('Location: reportekilometraje.php');
-        }
-    } else {
-
-        //  header("HTTP/1.1 403 ERROR");
-        //  $data = ['code' => "406", 'mensaje' => "no es una peticion validad "];
-        //echo json_encode($data);
-        header('Location: reportekilometraje.php');
-    }
+where estado=2 AND   MONTH(fecha)  = MONTH(CURRENT_DATE()) GROUP BY usuarios.names  ");
+    $stat1->execute();
     /* while($row = $stat->fetch()){
         echo "<li><a href='vervisitas.php?id=".$row['id']."' target='_blank'>".$row['imagen']."</a><br>
         <embed src='data:".$row['tipo'].";base64,".base64_encode($row['contenido'])."'width='200'/></li>";
@@ -62,7 +42,7 @@ where estado=2 and fecha BETWEEN '{$fecha_inicial} 00:00:00' AND '{$fecha_final}
  <head>
      <meta charset="utf-8">
      <meta name="viewport" content="width=device-width, initial-scale=1">
-     <title>Reporte kilometros por Visita</title>
+     <title>foyer</title>
 
      <!-- Google Font: Source Sans Pro -->
      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -137,64 +117,8 @@ where estado=2 and fecha BETWEEN '{$fecha_inicial} 00:00:00' AND '{$fecha_final}
                          <div class="col-sm-2">
                              <h1>Foyer</h1>
                          </div>
-                         <div class="col-sm-3">
-                             <ol class="breadcrumb float-sm-right">
-                                 <form role="form" class="form-horizontal" method="POST" action="filtrokmvista.php">
-                                     <div class="row">
-                                         <div class="col-sm-4">
 
-                                             <div class="form-group">
-                                                 <label for="exampleInputEmail1">Fecha Inicio</label>
 
-                                             </div>
-                                         </div>
-                                         <div class="col-sm-8">
-
-                                             <div class="form-group">
-
-                                                 <input type="date" name="fecha_inicio" class="form-control" id="exampleInputEmail1" placeholder="" required>
-                                             </div>
-                                         </div>
-                                     </div>
-
-                             </ol>
-                         </div>
-
-                         <div class="col-sm-3">
-                             <ol class="breadcrumb float-sm-right">
-                                 <div class="row">
-                                     <div class="col-sm-4">
-
-                                         <div class="form-group">
-                                             <label for="exampleInputEmail1">Fecha Final</label>
-
-                                         </div>
-                                     </div>
-                                     <div class="col-sm-8">
-
-                                         <div class="form-group">
-
-                                             <input type="date" name="fecha_final" class="form-control" id="exampleInputEmail1" placeholder="" required>
-                                         </div>
-                                     </div>
-                                 </div>
-                             </ol>
-                         </div>
-                         <div class="col-sm-3">
-                             <ol class="breadcrumb float-sm-left">
-                                 <div class="row">
-
-                                     <div class="col-sm-12">
-
-                                         <div class="form-group">
-
-                                             <button type="submit" class="btn btn-success">Reporte por Fecha</button>
-                                         </div>
-                                         </form>
-                                     </div>
-                                 </div>
-                             </ol>
-                         </div>
 
                      </div>
                  </div><!-- /.container-fluid -->
@@ -208,7 +132,7 @@ where estado=2 and fecha BETWEEN '{$fecha_inicial} 00:00:00' AND '{$fecha_final}
                      <!-- =========================================================== -->
 
 
-                     <h3 class="mt-1 mb-1">Reporte de Kilometrajes de <span><?php echo $fecha_inicial ?></span> A <span><?php echo $fecha_final ?></span></h3>
+                     <h3 class="mt-1 mb-1">Reporte de Citas por Mapa</h3>
 
                      <div class="row">
                          <div class="container-fluid ">
@@ -217,9 +141,9 @@ where estado=2 and fecha BETWEEN '{$fecha_inicial} 00:00:00' AND '{$fecha_final}
                                      <tr>
 
                                          <th>Nombre de Vendedor</th>
-                                         <th>Total de Kilometraje</th>
-                                         <th>fecha y hora de calculo</th>
 
+                                         <th>fecha y hora de calculo</th>
+                                         <th>Acciones</th>
 
                                      </tr>
                                  </thead>
@@ -235,14 +159,20 @@ where estado=2 and fecha BETWEEN '{$fecha_inicial} 00:00:00' AND '{$fecha_final}
 
 
                                              <td><?php echo $row1['names'] ?></td>
-                                             <td><?php echo $row1['total'] ?> </td>
+
                                              <td><?php
                                                     $oDate = new DateTime($fechahoy);
                                                     $sDate = $oDate->format("d-m-Y H:i:s");
                                                     echo
                                                     $sDate; ?> </td>
 
-
+                                             <td>
+                                                 <form role="form" class="form-horizontal" method="GET" action="ver_mapa.php">
+                                                     <input type="hidden" name="codigo_vendedor" id="" value="<?php echo $row1['id_usuario'] ?>">
+                                                     <input type="hidden" name="nombre_vendedor" id="" value="<?php echo $row1['names'] ?>">
+                                                     <button type="submit" class="btn btn-success"><i class="nav-icon far fa-image"></i></button>
+                                                 </form>
+                                             </td>
 
 
 
