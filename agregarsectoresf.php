@@ -39,7 +39,8 @@
      <title>AdminLTE 3 | Widgets</title>
 
      <!-- Google Font: Source Sans Pro -->
-     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+     <link rel="stylesheet"
+         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
      <!-- Font Awesome -->
      <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
      <!-- Ionicons -->
@@ -81,7 +82,7 @@
 
          <!-- Main Sidebar Container -->
          <?php
-            include 'menu.php';
+            require_once 'menu.php';
             ?>
 
          <!-- Content Wrapper. Contains page content -->
@@ -118,16 +119,19 @@
                                  </div>
                                  <!-- /.card-header -->
                                  <!-- form start -->
-                                 <form role="form" class="form-horizontal" method="POST" action="guardarutasf.php" enctype="multipart/form-data">
+                                 <form role="form" class="form-horizontal" method="POST" action="guardarutasf.php"
+                                     enctype="multipart/form-data">
                                      <div class="card-body">
                                          <div class="form-group">
                                              <label for="exampleInputEmail1">Nombre cliente</label>
-                                             <input type="text" name="nombre" class="form-control" id="exampleInputEmail1" placeholder="Ingrese nombre" required>
+                                             <input type="text" name="nombre" class="form-control"
+                                                 id="exampleInputEmail1" placeholder="Ingrese nombre" required>
                                          </div>
                                          <div class="form-group">
                                              <label for="exampleInputPassword1">Sector de Punto</label>
 
-                                             <select class="custom-select form-control-border" id="sector_id" name="sector">
+                                             <select class="custom-select form-control-border" id="sector_id"
+                                                 name="sector">
 
                                              </select>
 
@@ -135,11 +139,13 @@
                                          </div>
                                          <div class="form-group">
                                              <label for="exampleInputPassword1">Codigo de Cliente</label>
-                                             <input type="number" name="codigocliente" class="form-control" id="exampleInputPassword1" placeholder="" required>
+                                             <input type="number" name="codigocliente" class="form-control"
+                                                 id="exampleInputPassword1" placeholder="" required>
                                          </div>
                                          <div class="form-group">
                                              <label for="exampleInputPassword1">Codigo de Usuario</label>
-                                             <input type="number" name="codigousuario" class="form-control" id="exampleInputPassword1" placeholder="" required>
+                                             <input type="number" name="codigousuario" class="form-control"
+                                                 id="exampleInputPassword1" placeholder="" required>
                                          </div>
 
 
@@ -195,71 +201,72 @@
      <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
      <!-- AdminLTE for demo purposes -->
      <script>
-         //let estado = document.getElementById('id_estado');
+     //let estado = document.getElementById('id_estado');
 
-         $(document).on('ready', function() {
-             //let inputvalor = document.getElementById("id_estado").value;
-             var objXMLHttpRequestt = new XMLHttpRequest();
-             objXMLHttpRequestt.onreadystatechange = function() {
-                 if (objXMLHttpRequestt.readyState === 4) {
-                     if (objXMLHttpRequestt.status === 200) {
-                         // valor=objXMLHttpRequest.responseText;
-                         var myArr = JSON.parse(this.responseText);
-                         myFunction(myArr);
+     $(document).on('ready', function() {
+         //let inputvalor = document.getElementById("id_estado").value;
+         var objXMLHttpRequestt = new XMLHttpRequest();
+         objXMLHttpRequestt.onreadystatechange = function() {
+             if (objXMLHttpRequestt.readyState === 4) {
+                 if (objXMLHttpRequestt.status === 200) {
+                     // valor=objXMLHttpRequest.responseText;
+                     var myArr = JSON.parse(this.responseText);
+                     myFunction(myArr);
 
-                     } else {
-                         alert('Error Code: ' + objXMLHttpRequestt.status);
-                         alert('Error Message: ' + objXMLHttpRequestt.statusText);
-                     }
+                 } else {
+                     alert('Error Code: ' + objXMLHttpRequestt.status);
+                     alert('Error Message: ' + objXMLHttpRequestt.statusText);
                  }
              }
-             objXMLHttpRequestt.open('GET', 'http://143.198.163.181/apisectores.php');
-             objXMLHttpRequestt.send();
-         });
-
-         function myFunction(arr) {
-             var out1 = "";
-             var i;
-             for (i = 0; i < arr.length; i++) {
-                 out1 += '<option value="' + arr[i].id_sucursal + '">' +
-                     arr[i].nombre_sector + '</option>';
-             }
-             document.getElementById("sector_id").innerHTML = out1;
          }
+         objXMLHttpRequestt.open('GET', 'http://143.198.163.181/apisectores.php');
+         objXMLHttpRequestt.send();
+     });
+
+     function myFunction(arr) {
+         var out1 = "";
+         var i;
+         for (i = 0; i < arr.length; i++) {
+             out1 += '<option value="' + arr[i].id_sucursal + '">' +
+                 arr[i].nombre_sector + '</option>';
+         }
+         document.getElementById("sector_id").innerHTML = out1;
+     }
      </script>
      <script>
-         //let estado = document.getElementById('id_estado');
+     //let estado = document.getElementById('id_estado');
 
 
-         document.getElementById("id_estado").onchange = function(e) {
-             let inputvalor = document.getElementById("id_estado").value;
-             var objXMLHttpRequest = new XMLHttpRequest();
-             objXMLHttpRequest.onreadystatechange = function() {
-                 if (objXMLHttpRequest.readyState === 4) {
-                     if (objXMLHttpRequest.status === 200) {
-                         // valor=objXMLHttpRequest.responseText;
-                         var myArr2 = JSON.parse(this.responseText);
-                         myFunction2(myArr2);
+     document.getElementById("id_estado").onchange = function(e) {
+         let inputvalor = document.getElementById("id_estado").value;
+         var objXMLHttpRequest = new XMLHttpRequest();
+         objXMLHttpRequest.onreadystatechange = function() {
+             if (objXMLHttpRequest.readyState === 4) {
+                 if (objXMLHttpRequest.status === 200) {
+                     // valor=objXMLHttpRequest.responseText;
+                     var myArr2 = JSON.parse(this.responseText);
+                     myFunction2(myArr2);
 
-                     } else {
-                         alert('Error Code: ' + objXMLHttpRequest.status);
-                         alert('Error Message: ' + objXMLHttpRequest.statusText);
-                     }
+                 } else {
+                     alert('Error Code: ' + objXMLHttpRequest.status);
+                     alert('Error Message: ' + objXMLHttpRequest.statusText);
                  }
              }
-             objXMLHttpRequest.open('GET', 'http://143.198.163.181/apirutas.php?codigo_vendedor=7&codigo_sector=' + inputvalor);
-             objXMLHttpRequest.send();
          }
+         objXMLHttpRequest.open('GET', 'http://143.198.163.181/apirutas.php?codigo_vendedor=7&codigo_sector=' +
+             inputvalor);
+         objXMLHttpRequest.send();
+     }
 
-         function myFunction2(arr2) {
-             var out = "";
-             var ii;
-             for (ii = 0; ii < arr2.length; ii++) {
-                 out += '<input type="checkbox" value="' + arr2[ii].id_codigo + '" name="rutas[]">' +
-                     arr2[ii].nombre_sucursal + '<br>';
-             }
-             document.getElementById("ruta").innerHTML = out;
+     function myFunction2(arr2) {
+         var out = "";
+         var ii;
+         for (ii = 0; ii < arr2.length; ii++) {
+             out += '<input type="checkbox" value="' + arr2[ii].id_codigo + '" name="rutas[]">' +
+                 arr2[ii].nombre_sucursal + '<br>';
          }
+         document.getElementById("ruta").innerHTML = out;
+     }
      </script>
  </body>
 

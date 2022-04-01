@@ -36,8 +36,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 		//$conexion = mysqli_connect($hostname, $username, $password, $database);
 
 
-		$consulta = "select citas.id_citas,rutas.nombre_sucursal,citas.fecha_cita,citas.estado,citas.id_usuario from citas 
+		$consulta = "select citas.id_citas,rutas.nombre_sucursal,citas.fecha_cita,citas.estado,citas.id_usuario,cobro.monto from citas 
 inner JOIN rutas on rutas.id_codigo=citas.ruta
+inner join cobro on cobro.id_cobro_cliente=citas.id_usuario
+inner join cobro on cobro.id_cobro_cliente=citas.ruta
 where id_usuario={$codigo_vendedor} and estado IN(3,1) and DATE(fecha_cita)= CURDATE() ORDER BY fecha_cita ASC
 ";
 

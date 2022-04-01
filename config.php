@@ -16,6 +16,13 @@ $dbdigital = [
     'password' => '123456789',
     'db' => 'appfoyer'
 ];
+$dbdigitaldev = [
+
+    'host' => '204.48.20.116',
+    'username' => 'remotos',
+    'password' => '123456789',
+    'db' => 'appfoyerdev'
+];
 
 $dbhostiger = [
 

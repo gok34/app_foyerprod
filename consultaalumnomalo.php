@@ -29,7 +29,6 @@ if (!$_FILES['imagen']['name'] == '') {
    //  $comments             = ($_POST['comments']);
 
 
-comments
    $nama_file          = $_FILES['imagen']['name'];
    $ukuran_file         = $_FILES['imagen']['size'];
    $tipe_file          = $_FILES['imagen']['type'];

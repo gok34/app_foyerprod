@@ -30,6 +30,8 @@ if (isset($_POST['tipo_actividad']) && isset($_POST['id_cita'])  ) {
   //$cadena_actividad = implode(" , ", $tipo_actividad);
    $latitud            = ($_POST['latitud']);
    $longitud            = ($_POST['longitud']);
+   $montocobrado            = ($_POST['monto_cobrado']);
+      $devolucion            = ($_POST['devolucion']);
    // $latitud            = "2151545";
   // $longitud            = "1544";
   $estado = 2;
@@ -39,7 +41,7 @@ if (isset($_POST['tipo_actividad']) && isset($_POST['id_cita'])  ) {
    
       //$conexion = mysqli_connect($hostname, $username, $password, $database);
 
-       $query = "UPDATE citas SET tipo_actividad = '$tipo_actividad', estado = '$estado', latitud = '$latitud', longitud = '$longitud',fecha_cierre='$fechahoy'  WHERE id_citas = '$id_cita'";
+       $query = "UPDATE citas SET tipo_actividad = '$tipo_actividad', estado = '$estado', latitud = '$latitud', longitud = '$longitud',fecha_cierre='$fechahoy' ,cobro_cita='$montocobrado',devolucion_producto='$devolucion'  WHERE id_citas = '$id_cita'";
 
       $sql = $dbConn->prepare($query);
       $sql->execute();
