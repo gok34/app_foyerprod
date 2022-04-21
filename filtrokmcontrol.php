@@ -25,12 +25,35 @@
 
  <?php
 
-    $stat1 = $dbConn->prepare("
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+        if (isset($_POST['fecha_inicio']) && isset($_POST['fecha_final'])) {
+            // captura de datos desde un formulario
+            //$title1              = ($_POST['nombre']);
+            $fecha_inicial              = ($_POST['fecha_inicio']);
+            $fecha_final             = ($_POST['fecha_final']);
+
+
+            $stat1 = $dbConn->prepare("
 	
 	select usuarios.`names`,id_usuario from `control`
 INNER JOIN usuarios on usuarios.user= control.id_usuario
-where   MONTH(fecha)  = MONTH(CURRENT_DATE()) GROUP BY usuarios.names  ");
-    $stat1->execute();
+where    fecha BETWEEN '{$fecha_inicial} 00:00:00' AND '{$fecha_final} 23:59:00' GROUP BY usuarios.names  ");
+            $stat1->execute();
+        } else {
+            //header("HTTP/1.1 403 OK");
+            // $data = ['code' => "403", 'mensaje' => "datos vacios "];
+            header('Location: vervisitas.php');
+        }
+    } else {
+
+        //  header("HTTP/1.1 403 ERROR");
+        //  $data = ['code' => "406", 'mensaje' => "no es una peticion validad "];
+        //echo json_encode($data);
+        header('Location: reportekilometraje.php');
+    }
+
+
     /* while($row = $stat->fetch()){
         echo "<li><a href='vervisitas.php?id=".$row['id']."' target='_blank'>".$row['imagen']."</a><br>
         <embed src='data:".$row['tipo'].";base64,".base64_encode($row['contenido'])."'width='200'/></li>";
@@ -235,7 +258,7 @@ where   MONTH(fecha)  = MONTH(CURRENT_DATE()) GROUP BY usuarios.names  ");
                                                                 $stat2 = $dbConn->prepare("
 	
 	SELECT `control`.`id`,`control`.`kilometraje`,`control`.`imagen`,`control`.`contenido`,`control`.`estado`,`control`.`tipo`,`control`.`fecha`,`control`.`latitud`,`control`.`longitud`,usuarios.names,totalkm FROM `control`INNER JOIN usuarios ON control.id_usuario = usuarios.cod_vendedor 
-where id_usuario={$row1['id_usuario']} and  MONTH(fecha)  = MONTH(CURRENT_DATE()) ORDER BY fecha desc ");
+where id_usuario={$row1['id_usuario']} and fecha BETWEEN '{$fecha_inicial} 00:00:00' AND '{$fecha_final} 23:59:00' ORDER BY fecha desc ");
                                                                 $stat2->execute();
                                                                 /* while($row = $stat->fetch()){
         echo "<li><a href='vervisitas.php?id=".$row['id']."' target='_blank'>".$row['imagen']."</a><br>

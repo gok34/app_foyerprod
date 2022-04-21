@@ -36,7 +36,7 @@ $stat1->execute();
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Widgets</title>
+    <title>Foyer | 2022</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -84,7 +84,7 @@ $stat1->execute();
 
         <!-- Main Sidebar Container -->
         <?php
-        require 'menu.php';
+        require 'menubodega.php';
         ?>
 
         <!-- Content Wrapper. Contains page content -->
@@ -170,7 +170,7 @@ $stat1->execute();
 
                                                     <label for="exampleInputPassword1">Bolsa pequeña</label>
                                                     <input type="checkbox" name="marcadobolsa" class="form-control" id="exampleInputPassword1" placeholder="">
-                                                    <input type="number" name="cantidadbolsa" class="form-control" id="exampleInputPassword1" placeholder="Cant.">
+                                                    <input type="number" name="cantidadbolsa" class="form-control" id="exampleInputPassword1" placeholder="Cant."tabindex="1">
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
@@ -178,7 +178,7 @@ $stat1->execute();
 
                                                     <label for="exampleInputPassword1">Caja Pequeña</label>
                                                     <input type="checkbox" name="marcadobolsa" class="form-control" id="exampleInputPassword1" placeholder="">
-                                                    <input type="number" name="cajapeque" class="form-control" id="exampleInputPassword1" placeholder="Cant.">
+                                                    <input type="number" name="cajapeque" class="form-control" id="exampleInputPassword1" placeholder="Cant." tabindex="2">
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
@@ -186,7 +186,7 @@ $stat1->execute();
 
                                                     <label for="exampleInputPassword1">Caja Mediana</label>
                                                     <input type="checkbox" name="cajamedianax" class="form-control" id="exampleInputPassword1" placeholder="">
-                                                    <input type="number" name="cajamediana" class="form-control" id="exampleInputPassword1" placeholder="Cant.">
+                                                    <input type="number" name="cajamediana" class="form-control" id="exampleInputPassword1" placeholder="Cant."tabindex="3">
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
@@ -194,7 +194,7 @@ $stat1->execute();
 
                                                     <label for="exampleInputPassword1">Caja Grande</label>
                                                     <input type="checkbox" name="marcadobolsa" class="form-control" id="exampleInputPassword1" placeholder="">
-                                                    <input type="number" name="cajagrande" class="form-control" id="exampleInputPassword1" placeholder="Cant.">
+                                                    <input type="number" name="cajagrande" class="form-control" id="exampleInputPassword1" placeholder="Cant." tabindex="4">
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
@@ -202,7 +202,7 @@ $stat1->execute();
 
                                                     <label for="exampleInputPassword1">Bulto</label>
                                                     <input type="checkbox" name="marcadobolsa" class="form-control" id="exampleInputPassword1" placeholder="">
-                                                    <input type="number" name="bulto" class="form-control" id="exampleInputPassword1" placeholder="Cant.">
+                                                    <input type="number" name="bulto" class="form-control" id="exampleInputPassword1" placeholder="Cant." tabindex="5">
                                                 </div>
                                             </div>
 
@@ -213,7 +213,7 @@ $stat1->execute();
                                                 <div class="form-group">
 
                                                     <label for="exampleInputPassword1">Clientes</label>
-                                                    <input type="checkbox" name="areadestino" class="form-control" id="clientes" placeholder="" value="cliente">
+                                                    <input type="checkbox" name="areadestino" class="form-control" id="clientes" placeholder="" value="cliente" >
 
                                                 </div>
                                             </div>
@@ -260,7 +260,7 @@ $stat1->execute();
                                                     <div class="form-group">
                                                         <label for="exampleInputPassword1">Sector</label>
 
-                                                        <select class="custom-select form-control-border" id="sector_id" name="departamento">
+                                                        <select class="custom-select form-control-border" id="sector_id" name="departamento1">
 
                                                         </select>
 
@@ -285,9 +285,9 @@ $stat1->execute();
                                                         <div class="form-group">
                                                             <label for="exampleInputPassword1"> Numero Guia
                                                             </label>
-                                                            <input type="number" name="numerodeguia" class="form-control" id="orden" placeholder="Ingrese nombre">
+                                                            <input type="number" name="numerodeguia1" class="form-control" id="orden" placeholder="Ingrese nombre">
                                                             <label for="exampleInputPassword1"> fecha de Entrega</label>
-                                                            <input type="date" name="fechaentrega" class="form-control" id="orden" placeholder="Ingrese nombre">
+                                                            <input type="date" name="fechaentrega1" class="form-control" id="orden" placeholder="Ingrese nombre">
                                                         </div>
 
 
@@ -323,9 +323,9 @@ $stat1->execute();
                                                         <div class="form-group">
                                                             <label for="exampleInputPassword1"> Numero Guia
                                                             </label>
-                                                            <input type="number" name="numerodeguia" class="form-control" id="orden" placeholder="Ingrese nombre">
+                                                            <input type="number" name="numerodeguia2" class="form-control" id="orden" placeholder="Ingrese nombre">
                                                             <label for="exampleInputPassword1"> fecha de Entrega</label>
-                                                            <input type="date" name="fechaentrega" class="form-control" id="orden" placeholder="Ingrese nombre">
+                                                            <input type="date" name="fechaentrega2" class="form-control" id="orden" placeholder="Ingrese nombre">
                                                         </div>
 
 
@@ -350,7 +350,7 @@ $stat1->execute();
                                 <div class="card-body">
                                     <form role="form" class="form-horizontal" method="POST" action="guardarorden.php" enctype="multipart/form-data">
                                         <div id="mensajeria" style="display: none;">
-                                            <input type="text" name="tipoenvio" class="form-control" id="valortipoenvio" placeholder="Ingrese nombre">
+                                            <input type="hidden" name="tipoenvio" class="form-control" id="valortipoenvio" placeholder="Ingrese nombre">
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Numero de Orden</label>
                                                 <input type="text" name="orden" class="form-control" id="orden" placeholder="Ingrese nombre">
@@ -359,12 +359,12 @@ $stat1->execute();
                                             <div class="form-group">
                                                 <label for="exampleInputPassword1"> Lugar Destino
                                                 </label>
-                                                <input type="text" name="observacionesvarias" class="form-control" id="orden" placeholder="Ingrese nombre">
+                                                <input type="text" name="lugardestino" class="form-control" id="orden" placeholder="Ingrese nombre">
                                             </div>
 
                                             <div class="form-group">
                                                 <label for="exampleInputPassword1"> Solicitado Por</label>
-                                                <input type="text" name="numerodeguia" class="form-control" id="orden" placeholder="Ingrese nombre">
+                                                <input type="text" name="solicitadopor" class="form-control" id="orden" placeholder="Ingrese nombre">
                                             </div>
                                             <div class="card-footer">
                                                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -442,7 +442,11 @@ $stat1->execute();
     </script>
     <script>
         //clientes
-        var checkbox = document.getElementById('clientes');
+		 document.getElementById("cargoexpress").style.display = "none";
+				 document.getElementById("cargoexpress2").style.display = "none";
+      
+
+	  var checkbox = document.getElementById('clientes');
         checkbox.addEventListener('change', function() {
             if (this.checked) {
                 document.getElementById("ver").style.display = "block";
@@ -452,7 +456,7 @@ $stat1->execute();
                 document.getElementById("agudef").disabled = true;
 
             } else {
-                document.getElementById("cargoexpress").style.display = "none";
+               
                 document.getElementById("ver").style.display = "none";
                 document.getElementById("intitucional").disabled = false;
                 document.getElementById("xela").disabled = false;
@@ -466,6 +470,7 @@ $stat1->execute();
         checkbox.addEventListener('change', function() {
             if (this.checked) {
                 document.getElementById("cargoexpress").style.display = "block";
+				 document.getElementById("cargoexpress2").style.display = "block";
                 document.getElementById("pedido").style.display = "block";
 
                 document.getElementById("interno").disabled = true;
@@ -488,10 +493,13 @@ $stat1->execute();
                 //  document.getElementById("cargoexpress").style.display = "block";
                 document.getElementById("cargo").disabled = true;
                 document.getElementById("mandados").disabled = true;
+				 document.getElementById("cargoexpress").style.display = "none";
+				 document.getElementById("cargoexpress2").style.display = "none";
 
 
             } else {
                 document.getElementById("cargoexpress").style.display = "none";
+				 document.getElementById("cargoexpress2").style.display = "none";
                 document.getElementById("pedido").style.display = "none";
                 document.getElementById("cargo").disabled = false;
                 document.getElementById("mandados").disabled = false;
@@ -530,9 +538,9 @@ $stat1->execute();
                 document.getElementById("clientes").disabled = true;
                 document.getElementById("intitucionalb").style.display = "block";
                 var checkboxin = document.getElementById('cargo');
-                checkboxin.addEventListener('change', function() {
+                /*checkboxin.addEventListener('change', function() {
                     if (this.checked) {
-                        document.getElementById("cargoexpress2").style.display = "block";
+                        
                         // document.getElementById("cargoexpress").style.display = "block";
 
 
@@ -540,12 +548,13 @@ $stat1->execute();
                         document.getElementById("cargoexpress2").style.display = "none";
 
                     }
-                });
+                });*/
 
                 document.getElementById("xela").disabled = true;
                 document.getElementById("sanus").disabled = true;
                 document.getElementById("agudef").disabled = true;
             } else {
+				
                 document.getElementById("clientes").disabled = false;
                 document.getElementById("intitucionalb").style.display = "none";
 
